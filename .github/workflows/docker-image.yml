@@ -14,8 +14,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag javilabs/py_simple_app:$(date +%s)
+    - name: Generate Docker metadata for Docker Hub
+      id: metadocker
+      uses: docker/metadata-action@v3
+      with:
+        images: |
+          javilabs/py_simple_app
+        tags: |
+          type=semver,pattern={{raw}}
+        flavor: |
+          latest=true
     - name: Log into Dockerhub registry
       uses: docker/login-action@v1
       with:
@@ -25,4 +33,4 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: javilabs/py_simple_app:$(date +%s)
+        tags: ${{ steps.metadocker.outputs.tags }}
