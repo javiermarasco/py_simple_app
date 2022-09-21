@@ -1,7 +1,7 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import os
 
-hostname = "localhost"
+hostname = "0.0.0.0"
 port = os.getenv('PORT')
 
 class Server(BaseHTTPRequestHandler):
