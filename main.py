@@ -1,7 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import os
 
-hostname = "0.0.0.0"
 port = os.getenv('PORT')
 
 class Server(BaseHTTPRequestHandler):
@@ -12,7 +11,7 @@ class Server(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(bytes(" Message ==> " + self.message, encoding='utf-8') )
 
-runningServer = HTTPServer(("", 80), Server)
+runningServer = HTTPServer(("", int(port)), Server)
 print("Web server started.")
 
 try:
