@@ -12,7 +12,7 @@ class Server(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(bytes(" Message ==> " + self.message, encoding='utf-8') )
 
-runningServer = HTTPServer((hostname, port), Server)
+runningServer = HTTPServer(("", port), Server)
 print("Web server started.")
 
 try:
