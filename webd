@@ -1,4 +1,4 @@
 from python:3.7-alpine
 WORKDIR /web
-COPY main.py main.py
+COPY web.py web.py
 CMD [ "python3", "web.py"]
