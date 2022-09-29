@@ -2,11 +2,11 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import os
 
 
-port = 80 
+port = os.getenv('PORT')
 
 class Server(BaseHTTPRequestHandler):
     def do_GET(self):
-        self.message = "sarlanga" # os.getenv('MESSAGE')
+        self.message = os.getenv('MESSAGE')
         self.send_response(200)
         self.send_header("content-type", "text/html")
         self.end_headers()
