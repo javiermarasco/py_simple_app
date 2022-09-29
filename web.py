@@ -1,11 +1,12 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import os
 
-port = os.getenv('PORT')
+
+port = 80 
 
 class Server(BaseHTTPRequestHandler):
     def do_GET(self):
-        self.message = os.getenv('MESSAGE')
+        self.message = "sarlanga" # os.getenv('MESSAGE')
         self.send_response(200)
         self.send_header("content-type", "text/html")
         self.end_headers()
@@ -16,6 +17,7 @@ print("Web server started.")
 
 try:
     runningServer.serve_forever()
+    
 except KeyboardInterrupt:
     pass
 

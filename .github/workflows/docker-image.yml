@@ -12,12 +12,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Generate Docker metadata for Docker Hub
-      id: metadocker
+    - name: Generate Docker metadata for Docker Hub Web
+      id: metadockerweb
       uses: docker/metadata-action@v3
       with:
         images: |
-          javilabs/py_simple_app
+          javilabs/Web
+        tags: |
+          type=semver,pattern={{raw}}
+        flavor: |
+          latest=true
+    - name: Generate Docker metadata for Docker Hub Getter
+      id: metadockergetter
+      uses: docker/metadata-action@v3
+      with:
+        images: |
+          javilabs/Getter
         tags: |
           type=semver,pattern={{raw}}
         flavor: |
@@ -27,8 +37,15 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_USER }}
         password: ${{ secrets.DOCKER_TOKEN }}
-    - name: Push to Dockerhub registry
+    - name: Push to Dockerhub registry web
       uses: docker/build-push-action@v2
       with:
+        file: ./Web
         push: true
-        tags: ${{ steps.metadocker.outputs.tags }}
+        tags: ${{ steps.metadockerweb.outputs.tags }}
+    - name: Push to Dockerhub registry getter
+      uses: docker/build-push-action@v2
+      with:
+        file: ./Getter
+        push: true
+        tags: ${{ steps.metadockergetter.outputs.tags }}
