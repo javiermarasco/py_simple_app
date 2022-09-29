@@ -1,4 +1,6 @@
 from python:3.7-alpine
 WORKDIR /getter
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
 COPY getter.py getter.py
 CMD [ "python3", "getter.py"]
