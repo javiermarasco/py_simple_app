@@ -3,7 +3,7 @@ import os
 import time
 import requests
 
-dest_url = 'http://localhost' #os.getenv('DEST_URL')
+dest_url = os.getenv('DEST_URL')
 
 while True:
     response = requests.get(url=dest_url)
