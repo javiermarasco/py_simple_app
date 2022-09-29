@@ -17,7 +17,7 @@ jobs:
       uses: docker/metadata-action@v3
       with:
         images: |
-          javilabs/Web
+          javilabs/web
         tags: |
           type=semver,pattern={{raw}}
         flavor: |
@@ -27,7 +27,7 @@ jobs:
       uses: docker/metadata-action@v3
       with:
         images: |
-          javilabs/Getter
+          javilabs/getter
         tags: |
           type=semver,pattern={{raw}}
         flavor: |
