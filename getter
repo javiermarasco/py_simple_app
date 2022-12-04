@@ -1,6 +1,6 @@
 from python:3.7-alpine
-WORKDIR /web
+WORKDIR /getter
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
-COPY web.py web.py
-CMD [ "python3", "web.py"]
+COPY getter.py getter.py
+CMD [ "python3", "getter.py"]

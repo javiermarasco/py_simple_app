@@ -19,7 +19,7 @@ jobs:
       uses: docker/metadata-action@v3
       with:
         images: |
-          javilabs/web
+          javilabs/server
         tags: |
           type=semver,pattern={{raw}}
         flavor: |
@@ -42,12 +42,12 @@ jobs:
     - name: Push to Dockerhub registry web
       uses: docker/build-push-action@v2
       with:
-        file: ./webd
+        file: ./server
         push: true
         tags: ${{ steps.metadockerweb.outputs.tags }}
     - name: Push to Dockerhub registry getter
       uses: docker/build-push-action@v2
       with:
-        file: ./getd
+        file: ./getter
         push: true
         tags: ${{ steps.metadockergetter.outputs.tags }}
